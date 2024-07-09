@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -7,7 +6,8 @@ const connectDB = require('./config');
 
 dotenv.config();
 
-const userRoutes = require('./routes/userRoutes');
+const loginRoute = require('./routes/loginRoute');
+const registerRoute = require('./routes/registerRoute');
 const hotelRoutes = require('./routes/hotelRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 const siteTouristiqueRoutes = require('./routes/siteTouristiqueRoutes');
@@ -21,11 +21,12 @@ connectDB();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api', userRoutes);
-app.use('/api', hotelRoutes);
-app.use('/api', restaurantRoutes);
-app.use('/api', siteTouristiqueRoutes);
-app.use('/api', guideTouristiqueRoutes);
+app.use('/login', loginRoute);
+app.use('/register', registerRoute);
+app.use('/hotel', hotelRoutes);
+app.use('/restaurant', restaurantRoutes);
+app.use('/siteTouristique', siteTouristiqueRoutes);
+app.use('/guideTouristique', guideTouristiqueRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
