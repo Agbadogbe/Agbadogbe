@@ -1,0 +1,45 @@
+name: tourisme_app
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/splash_logo.png
+    - assets/images/touristic_sites.png
+    - assets/images/hotels.png
+    - assets/images/stores.png
+    # - assets/images/login_illustration.png
+    # - assets/images/cotonou.png
+    # - assets/images/ouidah.png
+    # - assets/images/abomey.png
+    # - assets/images/porto_novo.png
+    # - assets/images/grand_popo.png
+    # - assets/images/natitingou.png
+    # - assets/images/banikoara.png
+    # - assets/images/ketou.png
+    # - assets/images/segbana.png
+    # - assets/images/ouassa_pehunco.png
+    # - assets/images/abomey_calavi.png
+    # - assets/images/dogbo.png
+    # - assets/images/amazon_square.png
+    # - assets/images/martyrs_square.png
+    # - assets/images/cotonou_city.png
