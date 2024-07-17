@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../styles/app_styles.dart';
-import '../components/custom_button.dart';
+import '../styles/app_styles.dart';  // Assurez-vous que ce fichier contient les bons styles
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -8,89 +7,131 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 50),
+              SizedBox(height: 80),
               Image.asset(
-                'assets/images/login_illustration.png',
+                'assets/images/login_illustration.png',  // Assurez-vous que le chemin est correct
                 height: 150,
               ),
-              SizedBox(height: 20),
-              Text(
-                'Sign In',
-                style: AppStyles.titleText,
-              ),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               Text(
                 'Welcome back',
-                style: AppStyles.subtitleText,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  border: OutlineInputBorder(),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 16),
               TextField(
+                obscureText: true,
                 decoration: InputDecoration(
                   labelText: 'Password',
-                  border: OutlineInputBorder(),
-                ),
-                obscureText: true,
-              ),
-              SizedBox(height: 10),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    // Action pour mot de passe oublié
-                  },
-                  child: Text('Forgot your password?'),
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green, width: 2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
               SizedBox(height: 20),
-              CustomButton(
-                text: 'Log In',
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, '/home');
-                },
-              ),
-              SizedBox(height: 20),
-              Text('You do not have an Account?'),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/signup');
+                  Navigator.pushNamed(context, '/forgot_password'); // Assurez-vous que cette route est définie dans votre Navigator
                 },
-                child: Text('Create an account'),
+                child: Text(
+                  'Have you forgotten your password?',
+                  style: TextStyle(color: Colors.green),
+                ),
               ),
               SizedBox(height: 20),
-              Row(
-                children: [
-                  Expanded(child: Divider(thickness: 1)),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text('Continue with'),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/home'); // Assurez-vous que cette route est définie dans votre Navigator
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppStyles.primaryColor, // Couleur de fond ajustée
+                  foregroundColor: Colors.white, // Couleur du texte ajustée
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  Expanded(child: Divider(thickness: 1)),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                ),
+                child: Text('Log In', style: TextStyle(fontSize: 18)),
+              ),
+              SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('You do not have an Account ? ', style: TextStyle(fontSize: 16)),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/signup'); // Assurez-vous que cette route est définie dans votre Navigator
+                    },
+                    child: Text('Create an account', style: TextStyle(fontSize: 16, color: Colors.green)),
+                  ),
                 ],
               ),
-              SizedBox(height: 20),
-              CustomButton(
-                text: 'Continue with Google',
+              SizedBox(height: 24),
+              Text('Continue with', textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),
+              SizedBox(height: 16),
+              ElevatedButton(
                 onPressed: () {
-                  // Action pour connexion avec Google
+                  // Implement your method for Google Sign-In here
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppStyles.primaryColor, // Couleur de fond ajustée
+                  foregroundColor: Colors.white, // Couleur du texte ajustée
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                ),
+                child: Text('Continue with Google', style: TextStyle(fontSize: 18)),
               ),
-              SizedBox(height: 10),
-              CustomButton(
-                text: 'Continue with Apple',
+              SizedBox(height: 16),
+              ElevatedButton(
                 onPressed: () {
-                  // Action pour connexion avec Apple
+                  // Implement your method for Apple Sign-In here
                 },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppStyles.primaryColor, // Couleur de fond ajustée
+                  foregroundColor: Colors.white, // Couleur du texte ajustée
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                ),
+                child: Text('Continue with Apple', style: TextStyle(fontSize: 18)),
+              ),
+              SizedBox(height: 24),
+              Text(
+                'By registering you agree to the Terms and Conditions',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.grey, fontSize: 14),
               ),
             ],
           ),

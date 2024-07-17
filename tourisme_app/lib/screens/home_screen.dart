@@ -1,97 +1,115 @@
 import 'package:flutter/material.dart';
 import '../styles/app_styles.dart';
+import 'cotonou_screen.dart'; // Assurez-vous que cette page est prête à être utilisée
+import 'store_screen.dart';  // Ecran pour la boutique
+import 'messages_screen.dart';  // Ecran pour les messages
+import 'settings_screen.dart';  // Ecran pour les paramètres
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  List<Widget> _widgetOptions() => [
+    ExploreBeninScreen(), // Ecran pour l'onglet 'Home'
+    StoreScreen(), // Ecran pour l'onglet 'Store'
+    MessagesScreen(), // Ecran pour l'onglet 'Messages'
+    SettingsScreen(), // Ecran pour l'onglet 'Settings'
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Tourism App', style: AppStyles.titleText),
-        backgroundColor: AppStyles.primaryColor,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        title: Text('Hey Thibeaut Atti', style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold)),
         actions: [
           IconButton(
-            icon: Icon(Icons.account_circle),
-            onPressed: () {
-              // Action pour le profil
-            },
+            icon: Icon(Icons.favorite, color: Colors.red),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.person, color: Colors.black),
+            onPressed: () {},
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Hey Thomas ASI', style: AppStyles.heading1),
-            SizedBox(height: 20),
-            Text('Explore Benin', style: AppStyles.subtitleText),
-            SizedBox(height: 20),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: List.generate(choices.length, (index) {
-                  return Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        if (choices[index].title == 'Cotonou') {
-                          Navigator.pushNamed(context, '/cotonou');
-                        }
-                        // Ajoutez des actions pour d'autres destinations si nécessaire
-                      },
-                      child: SelectCard(choice: choices[index]),
-                    ),
-                  );
-                }),
-              ),
-            ),
-          ],
-        ),
-      ),
+      body: _widgetOptions().elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_filled),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.hotel),
-            label: 'Food-Hotel-Store',
+            icon: Icon(Icons.store_mall_directory),
+            label: 'Store',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chat',
+            icon: Icon(Icons.message),
+            label: 'Messages',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),
         ],
+        currentIndex: _selectedIndex,
         selectedItemColor: AppStyles.primaryColor,
         unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        elevation: 10,
       ),
     );
   }
 }
 
+class ExploreBeninScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 2,
+      childAspectRatio: 1.0,
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      children: List.generate(choices.length, (index) {
+        return SelectCard(choice: choices[index]);
+      }),
+    );
+  }
+}
+
 class Choice {
-  const Choice({required this.title, required this.icon});
+  const Choice({required this.title, required this.imagePath});
   final String title;
-  final IconData icon;
+  final String imagePath;
 }
 
 const List<Choice> choices = <Choice>[
-  Choice(title: 'Cotonou', icon: Icons.location_city),
-  Choice(title: 'Ouidah', icon: Icons.location_city),
-  Choice(title: 'Abomey', icon: Icons.location_city),
-  Choice(title: 'Porto-Novo', icon: Icons.location_city),
-  Choice(title: 'Grand-Popo', icon: Icons.location_city),
-  Choice(title: 'Natitingou', icon: Icons.location_city),
-  Choice(title: 'Banikoara', icon: Icons.location_city),
-  Choice(title: 'Ketou', icon: Icons.location_city),
-  Choice(title: 'Segbana', icon: Icons.location_city),
-  Choice(title: 'Ouassa-Pehunco', icon: Icons.location_city),
-  Choice(title: 'Abomey-Calavi', icon: Icons.location_city),
-  Choice(title: 'Dogbo', icon: Icons.location_city),
+  Choice(title: 'Cotonou', imagePath: 'assets/images/cotonou.png'),
+  Choice(title: 'Ouidah', imagePath: 'assets/images/ouidah.png'),
+  Choice(title: 'Abomey', imagePath: 'assets/images/abomey.jpg'),
+  Choice(title: 'Porto-Novo', imagePath: 'assets/images/porto_novo.jpg'),
+  Choice(title: 'Grand-Popo', imagePath: 'assets/images/grand_popo.jpg'),
+  Choice(title: 'Natitingou', imagePath: 'assets/images/natitingou.jpg'),
+  Choice(title: 'Banikoara', imagePath: 'assets/images/banikoara.jpg'),
+  Choice(title: 'Ketou', imagePath: 'assets/images/ketou.jpg'),
+  Choice(title: 'Segbana', imagePath: 'assets/images/segbana.jpg'),
+  Choice(title: 'Ouassa-Pehunco', imagePath: 'assets/images/ouassa_pehunco.jpg'),
+  Choice(title: 'Abomey-Calavi', imagePath: 'assets/images/abomey_calavi.jpg'),
+  Choice(title: 'Dogbo', imagePath: 'assets/images/dogbo.jpg'),
 ];
 
 class SelectCard extends StatelessWidget {
@@ -100,18 +118,49 @@ class SelectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.titleLarge!;
-    return Card(
-      color: Colors.white,
-      child: Center(
+    return InkWell(
+      onTap: () => navigateToScreen(context, choice.title),
+      child: Card(
+        margin: EdgeInsets.only(bottom: 16),
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        elevation: 8,
+        shadowColor: Colors.black.withOpacity(0.2),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Expanded(child: Icon(choice.icon, size: 50.0, color: textStyle.color)),
-            Text(choice.title, style: AppStyles.bodyText),
+            Expanded(
+              child: Image.asset(
+                choice.imagePath,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                choice.title,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  void navigateToScreen(BuildContext context, String title) {
+    if (title == 'Cotonou') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => CotonouScreen()),
+      );
+    }
+    // Ajoutez plus de cas pour d'autres écrans si nécessaire
   }
 }

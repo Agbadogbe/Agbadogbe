@@ -37,60 +37,91 @@ class _IntroScreenState extends State<IntroScreen> {
               _buildPageContent(
                 image: 'assets/images/stores.png',
                 title: 'Stores',
-                body: 'Immerse yourself in the authenticity of local stores. Discover the finest arts and crafts of Benin. Stock up on unique souvenirs in the colorful markets.',
+                body: 'Immerse yourself in the authenticity of local markets. Discover the flavors and crafts of Benin. Stock up on unique souvenirs in the colorful markets.',
               ),
             ],
           ),
-          Positioned(
-            bottom: 20,
-            left: 20,
-            child: TextButton(
-              onPressed: () {
-                _pageController.jumpToPage(2); // Aller à la dernière page
-              },
-              child: Text('Skip', style: AppStyles.bodyText),
+          if (_currentPage != 2)
+            Positioned(
+              bottom: 20,
+              left: 20,
+              child: TextButton(
+                onPressed: () {
+                  _pageController.jumpToPage(2); // Aller à la dernière page
+                },
+                child: Text('Skip', style: AppStyles.bodyText.copyWith(color: AppStyles.primaryColor)),
+                style: TextButton.styleFrom(
+                  foregroundColor: AppStyles.primaryColor, // couleur du texte
+                ),
+              ),
             ),
-          ),
-          Positioned(
-            bottom: 20,
-            right: 20,
-            child: TextButton(
-              onPressed: () {
-                if (_currentPage == 2) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
-                  );
-                } else {
+          if (_currentPage == 2)
+            Positioned(
+              bottom: 50,
+              left: 0,
+              right: 0,
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                width: double.infinity,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.green, // Utiliser une couleur verte
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
+                  child: Text(
+                    'Explore',
+                    style: AppStyles.buttonText.copyWith(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+          if (_currentPage != 2)
+            Positioned(
+              bottom: 20,
+              right: 20,
+              child: TextButton(
+                onPressed: () {
                   _pageController.nextPage(
                     duration: Duration(milliseconds: 400),
                     curve: Curves.easeInOut,
                   );
-                }
-              },
-              child: Text(_currentPage == 2 ? 'Explore' : 'Next', style: AppStyles.bodyText),
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: AppStyles.primaryColor, // couleur du texte
+                ),
+                child: Text('Next', style: AppStyles.bodyText.copyWith(color: AppStyles.primaryColor)),
+              ),
             ),
-          ),
-          Positioned(
-            bottom: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List<Widget>.generate(3, (int index) {
-                return AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  height: 10,
-                  width: (index == _currentPage) ? 20 : 10,
-                  margin: EdgeInsets.symmetric(horizontal: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: (index == _currentPage)
-                        ? AppStyles.primaryColor
-                        : Colors.grey,
-                  ),
-                );
-              }),
+          if (_currentPage != 2)
+            Positioned(
+              bottom: 80,
+              left: 0,
+              right: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List<Widget>.generate(3, (int index) {
+                  return AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    height: 10,
+                    width: (index == _currentPage) ? 20 : 10,
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      color: (index == _currentPage)
+                          ? AppStyles.primaryColor
+                          : Colors.grey,
+                    ),
+                  );
+                }),
+              ),
             ),
-          ),
         ],
       ),
     );
@@ -107,7 +138,7 @@ class _IntroScreenState extends State<IntroScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(image),
-          SizedBox(height: 20),
+          SizedBox(height: 40), // Augmentation de l'espace
           Text(
             title,
             style: AppStyles.heading1,

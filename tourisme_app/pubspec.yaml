@@ -27,8 +27,8 @@ flutter:
     - assets/images/touristic_sites.png
     - assets/images/hotels.png
     - assets/images/stores.png
-    # - assets/images/login_illustration.png
-    # - assets/images/cotonou.png
+    - assets/images/login_illustration.png
+    - assets/images/cotonou.png
     # - assets/images/ouidah.png
     # - assets/images/abomey.png
     # - assets/images/porto_novo.png
@@ -40,6 +40,6 @@ flutter:
     # - assets/images/ouassa_pehunco.png
     # - assets/images/abomey_calavi.png
     # - assets/images/dogbo.png
-    # - assets/images/amazon_square.png
-    # - assets/images/martyrs_square.png
-    # - assets/images/cotonou_city.png
+    - assets/images/amazon_square.png
+    - assets/images/martyrs_square.png
+    - assets/images/cotonou_city.png

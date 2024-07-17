@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppStyles {
-  static const Color primaryColor = Color(0xFF009688);
+  static const Color primaryColor = Color(0xFF4CAF50);  // Couleur principale verte
 
   static const TextStyle heading1 = TextStyle(
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
 
   static const TextStyle bodyText = TextStyle(
-    fontSize: 16,
+    fontSize: 18,
     color: Colors.black,
   );
 

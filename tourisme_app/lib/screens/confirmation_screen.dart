@@ -28,7 +28,6 @@ class ConfirmationScreen extends StatelessWidget {
             CustomButton(
               text: 'Continue',
               onPressed: () {
-                // Pour l'instant, ne faites rien
               },
             ),
           ],

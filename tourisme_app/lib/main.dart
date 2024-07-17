@@ -18,13 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tourism App',
       theme: ThemeData(
         primaryColor: AppStyles.primaryColor,
         textTheme: TextTheme(
-         headlineLarge: AppStyles.heading1, // Changer headline1 en headlineLarge
-          bodyLarge: AppStyles.bodyText, // Changer bodyText1 en bodyLarge
-          titleLarge: AppStyles.titleText, // Changer headline6 en titleLarge
+         headlineLarge: AppStyles.heading1,
+          bodyLarge: AppStyles.bodyText,
+          titleLarge: AppStyles.titleText,
           ),
         ),
       home: SplashScreen(),
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         '/forgot_password': (context) => ForgotPasswordScreen(),
         '/confirmation': (context) => ConfirmationScreen(),
         '/home': (context) => HomeScreen(),
-        '/cotonou': (context) => CotonouScreen(), // Ajoutez cette ligne
+        '/cotonou': (context) => CotonouScreen(),
       },
     );
   }
